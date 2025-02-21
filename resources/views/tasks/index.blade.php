@@ -12,11 +12,7 @@
         </div>
     </div>
 
-    @if(session('success'))
-        <div class="alert alert-success fade-in">
-            {{ session('success') }}
-        </div>
-    @endif
+    @include('partials.success-message')
 
     @forelse($tasks as $task)
         <div class="card">

@@ -12,15 +12,7 @@
     <div class="card">
         <h1>Create New Task</h1>
 
-        @if ($errors->any())
-            <div class="alert alert-error">
-                <ul style="list-style-position: inside;">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include('partials.error-messages')
 
         <form action="{{ route('tasks.store') }}" method="POST">
             @csrf
