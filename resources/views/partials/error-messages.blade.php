@@ -1,32 +1,36 @@
 @if ($errors->any())
-    <div class="bg-red-100 text-red-800 p-4 rounded-lg mb-6 animate-[fadeIn_0.3s_ease-in]">
-        <ul class="list-inside">
+    <div class="bg-white border-l-4 border-red-500 shadow-sm rounded-lg p-6 mb-6">
+        <ul class="space-y-2">
             @foreach ($errors->all() as $error)
                 <li class="flex items-center">
-                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                    <svg class="h-6 w-6 text-red-600 mr-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    {{ $error }}
+                    <span class="text-gray-800 font-medium">{{ $error }}</span>
                 </li>
             @endforeach
         </ul>
     </div>
 @elseif (session('error'))
-    <div class="bg-red-100 text-red-800 p-4 rounded-lg mb-6 animate-[fadeIn_0.3s_ease-in]">
-        <div class="flex items-center">
-            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+    <div class="bg-white border-l-4 border-red-500 shadow-sm rounded-lg p-6 mb-6 flex items-start">
+        <div class="flex-shrink-0 mr-4">
+            <svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            {{ session('error') }}
+        </div>
+        <div>
+            <p class="text-gray-800 font-medium">{{ session('error') }}</p>
         </div>
     </div>
 @elseif (session('warning'))
-    <div class="bg-yellow-100 text-yellow-800 p-4 rounded-lg mb-6 animate-[fadeIn_0.3s_ease-in]">
-        <div class="flex items-center">
-            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+    <div class="bg-white border-l-4 border-yellow-500 shadow-sm rounded-lg p-6 mb-6 flex items-start">
+        <div class="flex-shrink-0 mr-4">
+            <svg class="h-6 w-6 text-yellow-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
-            {{ session('warning') }}
+        </div>
+        <div>
+            <p class="text-gray-800 font-medium">{{ session('warning') }}</p>
         </div>
     </div>
 @endif
