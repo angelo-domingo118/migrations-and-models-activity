@@ -4,157 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greetings!</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="m-0 p-0 flex justify-center items-center min-h-screen bg-gray-900 font-['Poppins'] text-white overflow-hidden">
+    <div class="fixed top-0 left-0 w-full h-full z-0">
+        <div class="absolute w-[100px] h-[100px] left-[10%] top-[20%] rounded-full bg-white/10 animate-float"></div>
+        <div class="absolute w-[150px] h-[150px] right-[20%] bottom-[20%] rounded-full bg-white/10 animate-float delay-500"></div>
+        <div class="absolute w-[80px] h-[80px] left-[50%] top-[50%] rounded-full bg-white/10 animate-float delay-1000"></div>
+    </div>
+    
+    <div class="relative text-center p-8 bg-white/10 rounded-2xl backdrop-blur-lg shadow-lg hover:-translate-y-2.5 transition-transform duration-300 z-10">
+        <div class="text-3xl mb-4">
+            @foreach($emojis as $emoji)
+                <span class="inline-block mx-2.5 animate-bounce">{{ $emoji }}</span>
+            @endforeach
+        </div>
+        <h2 class="text-4xl mb-2 bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] bg-clip-text text-transparent animate-pulse">{{ $greeting }}</h2>
+        <h1 class="text-5xl font-semibold mt-4 mb-4 bg-gradient-to-r from-[#FFE66D] to-[#FF6B6B] bg-clip-text text-transparent inline-block">My name is {{ $name }}</h1>
+    </div>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: #1a1a1a;
-            font-family: 'Poppins', sans-serif;
-            color: white;
-            overflow: hidden;
-        }
-
-        .container {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            position: relative;
-            z-index: 1;
-        }
-
-        .emoji-container {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .emoji {
-            display: inline-block;
-            animation: floating 3s ease-in-out infinite;
-            margin: 0 10px;
-        }
-
-        .emoji:nth-child(2) { animation-delay: 0.2s; }
-        .emoji:nth-child(3) { animation-delay: 0.4s; }
-        .emoji:nth-child(4) { animation-delay: 0.6s; }
-
-        .greeting {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .name {
-            font-size: 3.5rem;
-            font-weight: 600;
-            margin: 1rem 0;
-            position: relative;
-            display: inline-block;
-            background: linear-gradient(45deg, #FFE66D, #FF6B6B);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: typewriter 2s steps(7) 1s forwards;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 4px solid #FFE66D;
-        }
-
-        /* Background animation */
-        .background-shapes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            animation: floatShape 20s linear infinite;
-        }
-
-        @keyframes floating {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes typewriter {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-
-        @keyframes floatShape {
-            0% { transform: translate(0, 0); }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
             50% { transform: translate(100px, 100px); }
-            100% { transform: translate(0, 0); }
         }
-
-        /* Interactive hover effect */
-        .container:hover {
-            transform: translateY(-10px);
-            transition: transform 0.3s ease;
+        .animate-float {
+            animation: float 20s linear infinite;
         }
-
-        /* Generate random shapes */
-        .shape:nth-child(1) {
-            width: 100px;
-            height: 100px;
-            left: 10%;
-            top: 20%;
-            animation-delay: 0s;
-        }
-
-        .shape:nth-child(2) {
-            width: 150px;
-            height: 150px;
-            right: 20%;
-            bottom: 20%;
+        .delay-500 {
             animation-delay: 5s;
         }
-
-        .shape:nth-child(3) {
-            width: 80px;
-            height: 80px;
-            left: 50%;
-            top: 50%;
+        .delay-1000 {
             animation-delay: 10s;
         }
     </style>
-</head>
-<body>
-    <div class="background-shapes">
-        <div class="shape"></div>
-        <div class="shape"></div>
-        <div class="shape"></div>
-    </div>
-    
-    <div class="container">
-        <div class="emoji-container">
-            @foreach($emojis as $emoji)
-                <span class="emoji">{{ $emoji }}</span>
-            @endforeach
-        </div>
-        <h2 class="greeting">{{ $greeting }}</h2>
-        <h1 class="name">My name is {{ $name }}</h1>
-    </div>
 </body>
 </html>

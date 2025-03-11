@@ -14,4 +14,9 @@ Route::get('/hello', function(){
     return 'Hello, Laravel';
 });
 
-Route::get('/greet', [GreetController::class, 'show']); 
+Route::get('/greet', [GreetController::class, 'show']);
+
+Route::get('/test', function () {
+    $content = '<strong>Hello</strong> <em>World</em> with <span style="color: red;">HTML</span>!';
+    return view('test', compact('content'));
+});
